@@ -1,8 +1,14 @@
 import { auth, db } from "./firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { writable } from "svelte/store";
 
+export const userId = writable(null);
 const formatEmail = (username) => `${username}@ctfaitd.com`;
+
+onAuthStateChanged(auth, (user) => {
+  userId.set(user ? user.uid : null);
+});
 
 async function createPlayerGameStatusStructure() {
   const puzzles = (await getDoc(doc(db, "misc", "puzzles"))).data().puzzles;
@@ -52,7 +58,3 @@ export async function logout() {
     console.error("Error Logging Out User", error);
   }
 }
-
-export const getCurrentUser = () => {
-  return auth.currentUser ? auth.currentUser : null;
-};

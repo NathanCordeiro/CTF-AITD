@@ -1,4 +1,5 @@
 <script>
+  import { logout } from "../backend/auth";
   import { getPlayerData, getFlag, getHint, markPuzzleAsSolved, markHintAsUsed } from "../backend/database";
   import { onMount } from "svelte";
 
@@ -55,7 +56,7 @@
   <h1>CTF Firebase Tester</h1>
 
   <button on:click={fetchPlayerData}>Refresh Player Data</button>
-  
+
   {#if playerData}
     <pre>{JSON.stringify(playerData, null, 2)}</pre>
   {/if}
@@ -81,6 +82,13 @@
   {#if errorMessage}
     <p style="color: red;">{errorMessage}</p>
   {/if}
+
+  <button
+  style="background-color: lightcoral;"
+    on:click={() => {
+      logout();
+    }}>Logout</button
+  >
 </main>
 
 <style>

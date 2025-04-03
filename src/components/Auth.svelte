@@ -1,5 +1,6 @@
 <script>
-  import { signup, login, logout, getCurrentUser } from "../backend/auth";
+  import { signup, login, logout } from "../backend/auth";
+  import { userId } from "../backend/auth";
 
   let username = "";
   let password = "";
@@ -43,7 +44,7 @@
   <button on:click={handleSignup}>Sign Up</button>
   <button on:click={handleLogin}>Login</button>
   <button on:click={handleLogout}>Logout</button>
-  <button on:click={()=>console.log(getCurrentUser().uid)}>Get Current User</button>
+  <button on:click={()=>console.log(userId)}>Get Current User</button>
   
 </main>
 
