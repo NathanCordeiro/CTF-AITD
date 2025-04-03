@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// consider encrypting this config object
 const firebaseConfig = {
   apiKey: "AIzaSyBYv-rFWNS8U8Vzq0qMBHgswHowR0wSlBw",
   authDomain: "ctf-aitd.firebaseapp.com",

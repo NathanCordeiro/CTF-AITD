@@ -17,6 +17,7 @@ async function createPlayerGameStatusStructure() {
   return playerGameStatusStructure;
 }
 
+// This function needs to be deleted once the firestore database is set up.
 export async function signup(username, password) {
   try {
     const email = formatEmail(username);

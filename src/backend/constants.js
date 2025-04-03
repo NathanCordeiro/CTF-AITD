@@ -1,3 +1,5 @@
+// This file needs to be deleted once the firestore database is set up.
+
 export const puzzleData = [
   {
     puzzleName: "Cipher Challenge",

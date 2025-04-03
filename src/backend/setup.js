@@ -1,3 +1,5 @@
+// This file needs to be deleted once the firestore database is set up.
+
 import { db } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { puzzleData } from "./constants";
@@ -34,15 +36,12 @@ export function encryptPuzzleData(puzzleData, key) {
 
 export async function uploadPuzzles() {
   try {
-    const encryptedData = encryptPuzzleData(puzzleData, "aitdctf2025");
+    const encryptedData = encryptPuzzleData(puzzleData, "aitdctf2025"); // use a random key here
     const puzzles = [];
     for (const puzzle of encryptedData) {
       const { puzzleName, flag, hint } = puzzle;
 
-      // Create a document in "hints" collection
       await setDoc(doc(db, "hints", puzzleName), { hint });
-
-      // Create a document in "flags" collection
       await setDoc(doc(db, "flags", puzzleName), { flag });
 
       puzzles.push(puzzleName);
