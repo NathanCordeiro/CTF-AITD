@@ -1,42 +1,42 @@
-export const puzzleGameStructure = {
-  "Mystic Maze": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+export const puzzleData = [
+  {
+    puzzleName: "Cipher Challenge",
+    flag: "cipher123",
+    hint: "Try Caesar cipher with a shift of 3.",
   },
-  "Cryptic Crossword": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "Binary Puzzle",
+    flag: "binary101",
+    hint: "Convert binary to text.",
   },
-  "Number Riddle": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "Reverse Engineering",
+    flag: "reverseMe",
+    hint: "Analyze the given executable.",
   },
-  "Hidden Treasure": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "Steganography",
+    flag: "hiddenImage",
+    hint: "Check the image for hidden data.",
   },
-  "Memory Match": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "SQL Injection",
+    flag: "sql_injection",
+    hint: "Try advance SQL injection techniques.",
   },
-  "Code Breaker": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "XSS Attack",
+    flag: "xss_vulnerability",
+    hint: "Inject a script to find the flag.",
   },
-  "Word Scramble": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "Hash Cracking",
+    flag: "hashCracked",
+    hint: "Use a dictionary attack on the hash.",
   },
-  "Sudoku Challenge": {
-    hintUsed: false,
-    solved: false,
-    solvedAt: null,
+  {
+    puzzleName: "Network Forensics",
+    flag: "networkTrace",
+    hint: "Analyze the packet capture file.",
   },
-};
+];

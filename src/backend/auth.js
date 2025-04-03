@@ -1,9 +1,21 @@
 import { auth, db } from "./firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { puzzleGameStructure } from "./constants";
 
 const formatEmail = (username) => `${username}@ctfaitd.com`;
+
+async function createPlayerGameStatusStructure() {
+  const puzzles = (await getDoc(doc(db, "misc", "puzzles"))).data().puzzles;
+  const playerGameStatusStructure = puzzles.reduce((acc, puzzle) => {
+    acc[puzzle] = {
+      hintUsed: false,
+      solved: false,
+      solvedAt: null,
+    };
+    return acc;
+  }, {});
+  return playerGameStatusStructure;
+}
 
 export async function signup(username, password) {
   try {
@@ -11,7 +23,9 @@ export async function signup(username, password) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    await setDoc(doc(db, "players", user.uid), puzzleGameStructure);
+    const playerGameStatusStructure = await createPlayerGameStatusStructure();
+    console.log(playerGameStatusStructure);
+    await setDoc(doc(db, "players", user.uid), playerGameStatusStructure);
     return user.uid;
   } catch (error) {
     console.error(`Error Signing Up Username: ${username}`, error);

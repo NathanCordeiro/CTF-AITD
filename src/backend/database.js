@@ -1,5 +1,6 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "./firebase";
+import { vigenereDecrypt } from "./utils";
 
 export async function getPlayerData() {
   const playerDocSnap = await getDoc(doc(db, "players", auth.currentUser.uid));
@@ -15,7 +16,7 @@ export async function getPlayerData() {
 export async function getFlag(puzzleName) {
   const playerDocSnap = await getDoc(doc(db, "flags", puzzleName));
   if (playerDocSnap.exists()) {
-    return playerDocSnap.data().flag;
+    return vigenereDecrypt(playerDocSnap.data().flag, "aitdctf2025");
   } else {
     console.log(`Document ${auth.currentUser.uid} does not exist`);
     return null;
@@ -25,7 +26,7 @@ export async function getFlag(puzzleName) {
 export async function getHint(puzzleName) {
   const playerDocSnap = await getDoc(doc(db, "hints", puzzleName));
   if (playerDocSnap.exists()) {
-    return playerDocSnap.data().hint;
+    return vigenereDecrypt(playerDocSnap.data().hint, "aitdctf2025");
   } else {
     console.log(`Document ${auth.currentUser.uid} does not exist`);
     return null;
