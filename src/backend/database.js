@@ -38,6 +38,13 @@ export async function markPuzzleAsSolved(puzzleName) {
     const solvedAt = new Date().toISOString();
     const playerDocRef = doc(db, "players", auth.currentUser.uid);
 
+    // Check if the puzzle is already solved
+    const playerDocSnap = await getDoc(playerDocRef);
+    if (playerDocSnap.data()[puzzleName]?.solved) {
+      console.log(`Puzzle ${puzzleName} is already solved.`);
+      return;
+    }
+
     await updateDoc(playerDocRef, {
       [`${puzzleName}.solved`]: true,
       [`${puzzleName}.solvedAt`]: solvedAt,
