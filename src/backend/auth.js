@@ -24,7 +24,6 @@ async function createPlayerGameStatusStructure() {
   return playerGameStatusStructure;
 }
 
-// This function needs to be deleted once the firestore database is set up.
 export async function signup(username, password) {
   try {
     const email = formatEmail(username);
@@ -33,7 +32,26 @@ export async function signup(username, password) {
 
     const playerGameStatusStructure = await createPlayerGameStatusStructure();
     console.log(playerGameStatusStructure);
+
+    // Set the player's game status structure in the "players" collection
     await setDoc(doc(db, "players", user.uid), playerGameStatusStructure);
+
+    // Fetch the "misc" collection and "players" document
+    const miscDocRef = doc(db, "misc", "players");
+    const miscDocSnap = await getDoc(miscDocRef);
+
+    let playersData = {};
+    if (miscDocSnap.exists()) {
+      // If the document exists, get the existing data
+      playersData = miscDocSnap.data();
+    }
+
+    // Add the new user.uid and email as a key-value pair
+    playersData[user.uid] = email;
+
+    // Update the "players" document in the "misc" collection
+    await setDoc(miscDocRef, playersData);
+
     return user.uid;
   } catch (error) {
     console.error(`Error Signing Up Username: ${username}`, error);
