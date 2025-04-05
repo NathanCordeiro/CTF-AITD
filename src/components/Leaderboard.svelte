@@ -56,7 +56,6 @@
   }
 
   .leaderboard-wrapper {
-    max-width: 900px;
     margin: auto;
     background: #ffffff;
     border-radius: 1.25rem;
