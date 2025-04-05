@@ -13,10 +13,11 @@ onAuthStateChanged(auth, (user) => {
 async function createPlayerGameStatusStructure() {
   const puzzles = (await getDoc(doc(db, "misc", "puzzles"))).data().puzzles;
   const playerGameStatusStructure = puzzles.reduce((acc, puzzle) => {
-    acc[puzzle] = {
+    acc[puzzle.puzzleName] = {
       hintUsed: false,
       solved: false,
       solvedAt: null,
+      description: puzzle.description,
     };
     return acc;
   }, {});

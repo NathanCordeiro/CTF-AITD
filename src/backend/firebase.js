@@ -4,13 +4,14 @@ import { getFirestore } from "firebase/firestore";
 
 // consider encrypting this config object
 const firebaseConfig = {
-  apiKey: "AIzaSyBYv-rFWNS8U8Vzq0qMBHgswHowR0wSlBw",
-  authDomain: "ctf-aitd.firebaseapp.com",
-  projectId: "ctf-aitd",
-  storageBucket: "ctf-aitd.appspot.com",
-  messagingSenderId: "1088040604037",
-  appId: "1:1088040604037:web:a0d517a551f43f9c40f4ec"
+  apiKey: "AIzaSyAPRxb9M4Kb65jGk9qgAt_07qqwl8t8lk0",
+  authDomain: "ctf-aitd25.firebaseapp.com",
+  projectId: "ctf-aitd25",
+  storageBucket: "ctf-aitd25.firebasestorage.app",
+  messagingSenderId: "824852465077",
+  appId: "1:824852465077:web:e31ab84818543d8ab045fc"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
